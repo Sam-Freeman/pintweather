@@ -1,4 +1,5 @@
 import './style.css';
+import { inject } from '@vercel/analytics';
 import { getLocationFromBrowser, reverseGeocode, searchLocations } from './location.ts';
 import { fetchWeather, calculatePintScore } from './weather.ts';
 import { fetchNearbyPubs } from './pubs.ts';
@@ -14,6 +15,9 @@ import {
 } from './ui.ts';
 import type { PubResult } from './pubs.ts';
 import type { Coords, LocationResult } from './types.ts';
+
+// Initialize Vercel Web Analytics
+inject();
 
 const CACHE_KEY = 'pintweather_cache';
 
