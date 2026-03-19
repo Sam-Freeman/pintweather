@@ -76,11 +76,14 @@ async function initFromBrowser() {
     const name = await reverseGeocode(coords);
     runApp(coords, name);
   } catch {
-    // Geolocation denied or failed — just show input prompt
+    // Geolocation denied or failed — show prompt state
     document.body.classList.remove('loading');
+    const verdictEl = document.getElementById('verdict')!;
+    verdictEl.innerHTML = '';
+    verdictEl.textContent = 'Pint?';
+    document.getElementById('subtitle')!.textContent = 'Type a place to find out.';
     const input = document.getElementById('location-input') as HTMLInputElement;
     input.focus();
-    input.placeholder = 'Type a place to check pint weather...';
   }
 }
 
