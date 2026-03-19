@@ -3,19 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Is It Pint Weather?</title>
-  <meta name="description" content="Find out if the weather's good enough for a pint in a beer garden near you." />
+  <title>Is It Pint Weather? — Beer Garden Weather Checker</title>
+  <meta name="description" content="Check if the weather's good enough for a pint outside. Get a live verdict based on temperature, rain, wind and cloud cover, plus find the nearest beer gardens and pubs with outdoor seating." />
+  <link rel="canonical" href="https://isitpintweather.com" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Is It Pint Weather?" />
-  <meta property="og:description" content="Find out if the weather's good enough for a pint in a beer garden near you." />
+  <meta property="og:description" content="Check if the weather's good enough for a pint outside. Find beer gardens near you." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://isitpintweather.com" />
+  <meta property="og:site_name" content="Is It Pint Weather?" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Is It Pint Weather?" />
-  <meta name="twitter:description" content="Find out if the weather's good enough for a pint in a beer garden near you." />
+  <meta name="twitter:description" content="Check if the weather's good enough for a pint outside. Find beer gardens near you." />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Is It Pint Weather?",
+    "url": "https://isitpintweather.com",
+    "description": "Check if the weather's good enough for a pint outside. Get a live verdict based on temperature, rain, wind and cloud cover, plus find the nearest beer gardens and pubs with outdoor seating.",
+    "applicationCategory": "WeatherApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+  }
+  </script>
 
   <link rel="icon" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +49,7 @@
     <main class="hero" id="hero">
       <div class="ambient-glow" aria-hidden="true"></div>
       <div class="hero-content">
-        <h1 class="verdict" id="verdict"></h1>
+        <h1 class="verdict" id="verdict" aria-label="Pint weather verdict"></h1>
         <p class="subtitle" id="subtitle"></p>
         <p class="location-name" id="location-name"></p>
         <!-- Location input — between verdict and details -->
@@ -82,6 +98,19 @@
       </button>
     </footer>
   </div>
+
+  <!-- SEO content for crawlers -->
+  <div class="sr-only" aria-hidden="true">
+    <h2>Is It Pint Weather?</h2>
+    <p>Check if the weather is good enough for a pint outside. Get a live verdict based on real-time temperature, rain, wind speed and cloud cover for your location. Find the nearest beer gardens and pubs with outdoor seating near you, with directions. Free, no sign-up, works on any device.</p>
+  </div>
+
+  <noscript>
+    <div style="max-width:600px;margin:40px auto;padding:0 24px;font-family:sans-serif;text-align:center">
+      <h2>Is It Pint Weather?</h2>
+      <p>This app needs JavaScript to check the weather and find beer gardens near you. Please enable JavaScript to use it.</p>
+    </div>
+  </noscript>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
