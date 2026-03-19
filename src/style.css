@@ -140,7 +140,7 @@ body.no {
 /* ─── App Shell ─── */
 #app {
   display: grid;
-  grid-template-rows: 1fr auto auto auto;
+  grid-template-rows: 1fr auto auto auto auto;
   height: 100dvh;
   overflow: hidden;
   position: relative;
@@ -547,7 +547,7 @@ body.no {
   display: flex;
   justify-content: center;
   gap: 20px;
-  padding: 8px 32px calc(16px + env(safe-area-inset-bottom, 0px));
+  padding: 4px 32px 0;
   flex-shrink: 0;
 }
 
@@ -587,6 +587,38 @@ body.no {
   to { transform: rotate(360deg); }
 }
 
+/* ─── Site Footer ─── */
+.site-footer {
+  grid-row: 5;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 12px;
+  padding: 0 32px calc(12px + env(safe-area-inset-bottom, 0px));
+  flex-shrink: 0;
+}
+
+.footer-name {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.7rem;
+  color: var(--muted);
+  opacity: 0.5;
+}
+
+.footer-email {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0.4;
+  transition: opacity 200ms;
+}
+
+.footer-email:hover {
+  opacity: 0.7;
+}
+
 /* ─── Mobile ─── */
 @media (max-width: 767px) {
   body {
@@ -598,7 +630,7 @@ body.no {
   #app {
     height: auto;
     min-height: 100dvh;
-    grid-template-rows: 1fr auto auto auto;
+    grid-template-rows: 1fr auto auto auto auto;
   }
 
   .hero {
