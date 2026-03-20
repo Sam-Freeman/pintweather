@@ -1,6 +1,6 @@
 import './style.css';
 import { inject } from '@vercel/analytics';
-import { getLocationFromBrowser, reverseGeocode, searchLocations } from './location.ts';
+import { getLocationFromBrowser, getLocationFromURL, reverseGeocode, searchLocations, updateURL } from './location.ts';
 import { fetchWeather, calculatePintScore } from './weather.ts';
 import { fetchNearbyPubs } from './pubs.ts';
 import {
@@ -48,6 +48,7 @@ async function runApp(coords: Coords, locationName: string) {
   showLoading();
   renderPubsLoading();
   setCache(coords, locationName);
+  updateURL(coords, locationName);
 
   // Fire both requests in parallel
   const weatherPromise = fetchWeather(coords);
@@ -228,9 +229,14 @@ function setupEventListeners() {
 // Boot
 setupEventListeners();
 
-const cached = getCached();
-if (cached) {
-  runApp(cached.coords, cached.name);
+const fromURL = getLocationFromURL();
+if (fromURL) {
+  runApp(fromURL.coords, fromURL.name);
 } else {
-  initFromBrowser();
+  const cached = getCached();
+  if (cached) {
+    runApp(cached.coords, cached.name);
+  } else {
+    initFromBrowser();
+  }
 }

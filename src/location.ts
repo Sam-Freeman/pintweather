@@ -51,6 +51,23 @@ export async function searchLocations(query: string, limit = 5): Promise<Locatio
   });
 }
 
+export function getLocationFromURL(): { coords: Coords; name: string } | null {
+  const params = new URLSearchParams(window.location.search);
+  const lat = parseFloat(params.get('lat') || '');
+  const lon = parseFloat(params.get('lon') || '');
+  const name = params.get('name');
+  if (isNaN(lat) || isNaN(lon) || !name) return null;
+  return { coords: { lat, lon }, name };
+}
+
+export function updateURL(coords: Coords, locationName: string) {
+  const params = new URLSearchParams();
+  params.set('lat', coords.lat.toFixed(5));
+  params.set('lon', coords.lon.toFixed(5));
+  params.set('name', locationName);
+  history.replaceState(null, '', `?${params.toString()}`);
+}
+
 export async function reverseGeocode(coords: Coords): Promise<string> {
   await nominatimThrottle();
   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lon}`;
